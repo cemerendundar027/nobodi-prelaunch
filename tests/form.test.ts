@@ -5,4 +5,3 @@ describe("waitlist helpers", () => {
   it("accepts only Formspree HTTPS endpoints", () => { expect(isValidFormspreeEndpoint("https://formspree.io/f/abc123")).toBe(true); expect(isValidFormspreeEndpoint("http://formspree.io/f/abc123")).toBe(false); expect(isValidFormspreeEndpoint(undefined)).toBe(false); });
   it("extracts UTM values", () => { const utm = readUtmParams("?utm_source=instagram&utm_campaign=lansman"); expect(utm.utm_source).toBe("instagram"); expect(utm.utm_campaign).toBe("lansman"); expect(utm.utm_medium).toBe(""); });
 });
-

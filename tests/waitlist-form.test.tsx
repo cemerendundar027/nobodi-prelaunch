@@ -9,7 +9,7 @@ describe("WaitlistForm", () => {
     vi.stubEnv("NEXT_PUBLIC_FORMSPREE_ENDPOINT", "");
     render(<WaitlistForm />);
     expect(screen.getByRole("button")).toBeDisabled();
-    expect(screen.getByRole("status")).toHaveTextContent("Form henÃ¼z yapÄ±landÄ±rÄ±lmadÄ±");
+    expect(screen.getByRole("status")).toHaveTextContent("Form henüz yapılandırılmadı");
   });
 
   it("validates the email before sending", () => {
@@ -17,7 +17,7 @@ describe("WaitlistForm", () => {
     render(<WaitlistForm />);
     fireEvent.change(screen.getByLabelText("E-posta adresin"), { target: { value: "yanlis" } });
     fireEvent.click(screen.getByRole("button"));
-    expect(screen.getByRole("status")).toHaveTextContent("GeÃ§erli bir e-posta");
+    expect(screen.getByRole("status")).toHaveTextContent("Geçerli bir e-posta");
   });
 
   it("shows success only after a successful response and passes UTMs", async () => {
@@ -29,9 +29,9 @@ describe("WaitlistForm", () => {
     fireEvent.change(screen.getByLabelText("E-posta adresin"), { target: { value: "hello@nobodi.chat" } });
     fireEvent.click(screen.getByRole("button"));
     expect(screen.getByRole("button")).toBeDisabled();
-    expect(screen.queryByText(/Ä°lk gelenlerden oldun/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/İlk gelenlerden oldun/)).not.toBeInTheDocument();
     resolveRequest(new Response("{}", { status: 200 }));
-    await screen.findByText(/Ä°lk gelenlerden oldun/);
+    await screen.findByText(/İlk gelenlerden oldun/);
     const submitted = fetchMock.mock.calls[0][1]?.body as FormData;
     expect(submitted.get("utm_source")).toBe("instagram");
     expect(submitted.get("utm_campaign")).toBe("launch");
@@ -44,7 +44,6 @@ describe("WaitlistForm", () => {
     render(<WaitlistForm />);
     fireEvent.change(screen.getByLabelText("E-posta adresin"), { target: { value: "hello@nobodi.chat" } });
     fireEvent.click(screen.getByRole("button"));
-    await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("Bir ÅŸey ters gitti"));
+    await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("Bir şey ters gitti"));
   });
 });
-

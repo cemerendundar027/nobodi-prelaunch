@@ -1,10 +1,10 @@
 # NOBODI Pre-launch
 
-NOBODI iÃ§in baÄŸÄ±msÄ±z, statik olarak daÄŸÄ±tÄ±labilen Next.js pre-launch sitesi.
+NOBODI için bağımsız, statik olarak dağıtılabilen Next.js pre-launch sitesi.
 
 ## Kurulum
 
-Node.js 20.9 veya Ã¼zeri gerekir.
+Node.js 20.9 veya üzeri gerekir.
 
 ```bash
 npm install
@@ -12,21 +12,21 @@ copy .env.example .env.local
 npm run dev
 ```
 
-TarayÄ±cÄ±da `http://localhost:3000` adresini aÃ§Ä±n.
+Tarayıcıda `http://localhost:3000` adresini açın.
 
 ## Formspree
 
-Formspree'de bir form oluÅŸturun ve `.env.local` iÃ§ine HTTPS endpoint'inizi yazÄ±n:
+Formspree'de bir form oluşturun ve `.env.local` içine HTTPS endpoint'inizi yazın:
 
 ```env
 NEXT_PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/xxxxxxxx
 ```
 
-DeÄŸiÅŸken tanÄ±mlÄ± veya geÃ§erli deÄŸilse form devre dÄ±ÅŸÄ± kalÄ±r ve yapÄ±landÄ±rma uyarÄ±sÄ± gÃ¶sterir. Form; e-posta, `utm_source`, `utm_medium`, `utm_campaign`, `utm_content` ve botlar iÃ§in `_gotcha` alanÄ±nÄ± gÃ¶nderir. BaÅŸarÄ± yalnÄ±zca Formspree baÅŸarÄ±lÄ± HTTP yanÄ±tÄ± verdikten sonra gÃ¶sterilir. AynÄ± e-postanÄ±n benzersizliÄŸi hakkÄ±nda garanti verilmez.
+Değişken tanımlı veya geçerli değilse form devre dışı kalır ve yapılandırma uyarısı gösterir. Form; e-posta, `utm_source`, `utm_medium`, `utm_campaign`, `utm_content` ve botlar için `_gotcha` alanını gönderir. Başarı yalnızca Formspree başarılı HTTP yanıtı verdikten sonra gösterilir. Aynı e-postanın benzersizliği hakkında garanti verilmez.
 
-15 Ekim 2026 itibarÄ±yla Formspree Free planÄ± ayda 50 gÃ¶nderim ve 30 gÃ¼nlÃ¼k gÃ¶nderim arÅŸivi sunar; temel spam filtresi vardÄ±r. Limit aÅŸÄ±lÄ±rsa Formspree hata dÃ¶ndÃ¼rebilir ve arayÃ¼z bunu baÅŸarÄ± olarak gÃ¶stermez. `_gotcha` honeypot alanÄ± bot gÃ¶nderimlerini azaltÄ±r, ancak kesin koruma saÄŸlamaz. Planlar ve sÄ±nÄ±rlar deÄŸiÅŸebileceÄŸi iÃ§in daÄŸÄ±tÄ±mdan Ã¶nce [Formspree planlar](https://formspree.io/plans), [hesap limitleri](https://help.formspree.io/articles/account-management/account-limits/) ve [honeypot](https://help.formspree.io/articles/building-your-form/honeypot-spam-filtering/) belgelerini kontrol edin. GÃ¶nderimler Ã¼Ã§Ã¼ncÃ¼ taraf Formspree tarafÄ±ndan iÅŸlenir; bu durum `/gizlilik` sayfasÄ±nda aÃ§Ä±klanÄ±r.
+15 Ekim 2026 itibarıyla Formspree Free planı ayda 50 gönderim ve 30 günlük gönderim arşivi sunar; temel spam filtresi vardır. Limit aşılırsa Formspree hata döndürebilir ve arayüz bunu başarı olarak göstermez. `_gotcha` honeypot alanı bot gönderimlerini azaltır, ancak kesin koruma sağlamaz. Planlar ve sınırlar değişebileceği için dağıtımdan önce [Formspree planlar](https://formspree.io/plans), [hesap limitleri](https://help.formspree.io/articles/account-management/account-limits/) ve [honeypot](https://help.formspree.io/articles/building-your-form/honeypot-spam-filtering/) belgelerini kontrol edin. Gönderimler üçüncü taraf Formspree tarafından işlenir; bu durum `/gizlilik` sayfasında açıklanır.
 
-Form yalnÄ±zca kullanÄ±cÄ±nÄ±n talep ettiÄŸi aÃ§Ä±lÄ±ÅŸ/erken eriÅŸim bildirimini gÃ¶nderir; ayrÄ± pazarlama faaliyetleri iÃ§in izin varsaymaz. Bu nedenle fazladan bir pazarlama onay kutusu eklenmemiÅŸtir. KullanÄ±m amacÄ± geniÅŸletilirse yerel mevzuata gÃ¶re ayrÄ±ca aÃ§Ä±k rÄ±za/izin akÄ±ÅŸÄ± deÄŸerlendirilmelidir.
+Form yalnızca kullanıcının talep ettiği açılış/erken erişim bildirimini gönderir; ayrı pazarlama faaliyetleri için izin varsaymaz. Bu nedenle fazladan bir pazarlama onay kutusu eklenmemiştir. Kullanım amacı genişletilirse yerel mevzuata göre ayrıca açık rıza/izin akışı değerlendirilmelidir.
 
 ## Kontroller
 
@@ -37,13 +37,12 @@ npm run typecheck
 npm run build
 ```
 
-Statik Ã§Ä±ktÄ± `out/` klasÃ¶rÃ¼ne yazÄ±lÄ±r.
+Statik çıktı `out/` klasörüne yazılır.
 
-## DaÄŸÄ±tÄ±m
+## Dağıtım
 
-- **Vercel:** GitHub reposunu iÃ§e aktarÄ±n. Framework Preset `Next.js` olarak otomatik algÄ±lanÄ±r; ayrÄ±ca `vercel.json` gerekmez. Project Settings â†’ Environment Variables alanÄ±na `NEXT_PUBLIC_FORMSPREE_ENDPOINT` deÄŸerini Production ve isteniyorsa Preview ortamlarÄ± iÃ§in ekleyin. Build komutu ve Ã§Ä±ktÄ± klasÃ¶rÃ¼ ayarlarÄ±nÄ± Vercel varsayÄ±lanÄ±nda bÄ±rakÄ±n.
-- **Netlify / Cloudflare Pages:** Build komutu `npm run build`, Ã§Ä±ktÄ± klasÃ¶rÃ¼ `out` olmalÄ±dÄ±r. Ortam deÄŸiÅŸkenini panelden ekleyin.
-- **Statik hosting:** `npm run build` sonrasÄ± `out/` iÃ§eriÄŸini yÃ¼kleyin.
+- **Vercel:** GitHub reposunu içe aktarın. Framework Preset `Next.js` olarak otomatik algılanır; ayrıca `vercel.json` gerekmez. Project Settings → Environment Variables alanına `NEXT_PUBLIC_FORMSPREE_ENDPOINT` değerini Production ve isteniyorsa Preview ortamları için ekleyin. Build komutu ve çıktı klasörü ayarlarını Vercel varsayılanında bırakın.
+- **Netlify / Cloudflare Pages:** Build komutu `npm run build`, çıktı klasörü `out` olmalıdır. Ortam değişkenini panelden ekleyin.
+- **Statik hosting:** `npm run build` sonrası `out/` içeriğini yükleyin.
 
-Bu proje backend, veritabanÄ± veya kimlik doÄŸrulama sistemi kullanmaz.
-
+Bu proje backend, veritabanı veya kimlik doğrulama sistemi kullanmaz.
