@@ -1,16 +1,15 @@
+"use client";
 import Link from "next/link";
+import { LanguageSelector, useLanguage } from "@/components/language-selector";
 import { Logo } from "@/components/logo";
+import { translations } from "@/lib/i18n";
 
 export default function PrivacyPage() {
+  const { language } = useLanguage(); const t = translations[language].legal;
   return <main className="legal-page shell">
-    <nav className="nav"><Logo /><Link className="back-link" href="/">Ana sayfaya dön</Link></nav>
-    <article>
-      <p className="kicker">GİZLİLİK</p><h1>Verin, senin.</h1><p className="legal-date">Son güncelleme: 15 Ekim 2026</p>
-      <h2>Hangi veriyi topluyoruz?</h2><p>Erken erişim listesine katıldığında yalnızca e-posta adresini ve bağlantıda bulunan kampanya parametrelerini (UTM) toplarız. Hesap, parola veya başka bir profil bilgisi istemeyiz.</p>
-      <h2>Neden topluyoruz?</h2><p>E-posta adresini NOBODI açıldığında haber vermek ve erken erişim süreciyle ilgili gerekli bilgilendirmeleri yapmak için kullanırız. Ayrı bir pazarlama izni verdiğini varsaymayız.</p>
-      <h2>Formspree</h2><p>Form gönderimleri üçüncü taraf form hizmeti Formspree tarafından işlenir. Bu nedenle e-posta adresin Formspree altyapısına aktarılır ve onların güvenlik ve saklama uygulamalarına tabi olabilir. Ayrıntılar için <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">Formspree Gizlilik Politikası</a>nı inceleyebilirsin.</p>
-      <h2>Hakların</h2><p>Kaydının silinmesini, düzeltilmesini veya hangi verinin tutulduğunu öğrenmeyi talep edebilirsin. Bu metin, yürürlükteki mevzuat kapsamındaki haklarını sınırlamaz.</p>
-      <h2>İletişim</h2><p>Gizlilikle ilgili soruların için <a href="https://www.instagram.com/nobodi.chat.tr/" target="_blank" rel="noopener noreferrer">Instagram hesabımızdan</a> bize ulaşabilirsin.</p>
+    <nav className="nav"><Logo /><div className="nav-actions"><LanguageSelector /><Link className="back-link" href="/">{t.back}</Link></div></nav>
+    <article><p className="kicker">{t.kicker}</p><h1>{t.title}</h1><p className="legal-date">{t.updated}</p>
+      {t.sections.map(([title, body], index) => <section key={title}><h2>{title}</h2><p>{body}{index === 2 && <> <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">{t.policy}</a>.</>}</p></section>)}
     </article>
   </main>;
 }
