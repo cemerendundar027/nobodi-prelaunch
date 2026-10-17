@@ -4,11 +4,11 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Language, languageOptions, languages } from "@/lib/i18n";
 
 const listeners = new Set<() => void>();
-let activeLanguage: Language = "tr";
+let activeLanguage: Language = "en";
 
 function readLanguage(): Language {
-  if (typeof window === "undefined") return "tr";
-  const saved = window.localStorage.getItem("nobodi-language");
+  if (typeof window === "undefined") return "en";
+  const saved = window.localStorage.getItem("nobodi-language-v2");
   if (languages.includes(saved as Language)) activeLanguage = saved as Language;
   return activeLanguage;
 }
@@ -16,10 +16,10 @@ function readLanguage(): Language {
 function subscribe(listener: () => void) { listeners.add(listener); return () => listeners.delete(listener); }
 
 export function useLanguage() {
-  const language = useSyncExternalStore(subscribe, readLanguage, () => "tr" as Language);
+  const language = useSyncExternalStore(subscribe, readLanguage, () => "en" as Language);
   const setLanguage = (next: Language) => {
     activeLanguage = next;
-    window.localStorage.setItem("nobodi-language", next);
+    window.localStorage.setItem("nobodi-language-v2", next);
     document.documentElement.lang = next;
     listeners.forEach((listener) => listener());
   };
@@ -41,11 +41,11 @@ export function LanguageSelector() {
 
   return <div className="language-selector" ref={rootRef}>
     <button className="language-trigger" type="button" aria-haspopup="listbox" aria-expanded={open} onClick={() => setOpen((value) => !value)}>
-      <span className="flag-circle" aria-hidden="true">{active.flag}</span><span>{active.label}</span><span className={`language-chevron ${open ? "open" : ""}`} aria-hidden="true">⌄</span>
+      <span className="flag-circle" aria-hidden="true"><span className="flag-image" style={{ backgroundImage: `url(https://flagcdn.com/w80/${active.flagCode}.png)` }} /></span><span>{active.label}</span><span className={`language-chevron ${open ? "open" : ""}`} aria-hidden="true">⌄</span>
     </button>
     {open && <div className="language-menu" role="listbox" aria-label="Language">
       {languageOptions.map((option) => <button key={option.code} type="button" role="option" aria-selected={language === option.code} onClick={() => { setLanguage(option.code); setOpen(false); }}>
-        <span className="flag-circle" aria-hidden="true">{option.flag}</span><span>{option.label}</span>{language === option.code && <span className="language-check" aria-hidden="true">✓</span>}
+        <span className="flag-circle" aria-hidden="true"><span className="flag-image" style={{ backgroundImage: `url(https://flagcdn.com/w80/${option.flagCode}.png)` }} /></span><span>{option.label}</span>{language === option.code && <span className="language-check" aria-hidden="true">✓</span>}
       </button>)}
     </div>}
   </div>;

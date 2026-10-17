@@ -1,10 +1,10 @@
 export const languages = ["tr", "en", "el"] as const;
 export type Language = (typeof languages)[number];
 
-export const languageOptions: Array<{ code: Language; label: string; flag: string }> = [
-  { code: "tr", label: "Türkçe", flag: "🇹🇷" },
-  { code: "en", label: "English", flag: "🇬🇧" },
-  { code: "el", label: "Ελληνικά", flag: "🇬🇷" },
+export const languageOptions: Array<{ code: Language; label: string; flagCode: string }> = [
+  { code: "tr", label: "Türkçe", flagCode: "tr" },
+  { code: "en", label: "English", flagCode: "gb" },
+  { code: "el", label: "Ελληνικά", flagCode: "gr" },
 ];
 
 const tr = {
